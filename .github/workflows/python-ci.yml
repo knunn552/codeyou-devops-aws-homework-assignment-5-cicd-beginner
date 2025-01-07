@@ -1,0 +1,34 @@
+name: Python CI
+
+on: [push]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 5
+
+    steps:
+    # Instructions said 3.9 but I'm assuming 3.10 is cool is everything works.
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+
+    # Again, retrived from GitHub Actions Marketplace
+    # Cool thing about the workflow is that Github takes care of defining the path of the requirements.txt file even if not in same directory. I think.
+    - name: Install Python dependencies
+      uses: py-actions/py-dependency-install@v4
+      with:
+        path: "requirements.txt"
+      
+    # Got this from GitHub Actions Marketplace
+    - name: Lint with flake8
+      uses: py-actions/flake8@v2 
+        
+    # Again, GH marketplace
+    - name: Checking Security Vulnerabilities in Dependencies
+      uses: pypa/gh-action-pip-audit@v1.1.0
+
+      
