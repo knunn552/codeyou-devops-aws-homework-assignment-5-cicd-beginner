@@ -36,6 +36,9 @@ jobs:
     - name: Install Bandit
       run: pip install bandit
 
+    - name: Create output directory
+      run: mkdir -p output
+
     - name: Run Bandit Security Check
       run: bandit -r . -f txt -o output/security_report.txt || true
       
