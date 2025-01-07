@@ -39,6 +39,14 @@ jobs:
     - name: Create output directory
       run: mkdir -p output
 
+    # Originally had the run set to ||, which is why the workflow could have been succeeding even if there are vulns. Removing that.
     - name: Run Bandit Security Check
-      run: bandit -r . -f txt -o output/security_report.txt || true
+      run: bandit -r . -f txt -o output/security_report.txt
+
+    # - name: Upload Bandit Security Report
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: Bandit Security Report
+    #     path: output/security_report.txt
+
       
