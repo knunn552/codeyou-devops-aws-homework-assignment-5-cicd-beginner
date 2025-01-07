@@ -31,4 +31,11 @@ jobs:
     - name: Checking Security Vulnerabilities in Dependencies
       uses: pypa/gh-action-pip-audit@v1.1.0
 
+    # Looks like we might have to run a pip install here as the bandit action in market place looks horrible hence the 6 stars.
+    
+   - name: Install Bandit
+     run: pip install bandit
+
+   - name: Run Bandit Security Check
+     run: bandit -r . -f txt -o output/security_report.txt || true
       
