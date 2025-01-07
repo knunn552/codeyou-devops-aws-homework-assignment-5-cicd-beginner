@@ -43,10 +43,9 @@ jobs:
     - name: Run Bandit Security Check
       run: bandit -r . -f txt -o output/security_report.txt
 
-    - name: Upload Bandit Security Report
-      uses: actions/upload-artifact@v3
-      with:
-        name: Bandit Security Report
-        path: output/security_report.txt
+    # ChatGPT was trying to get me to create a downloadable artifact to view the security text output.
+    # I was like, nah, why can't we just cat the output right then and there. A programmer move, indeed.  
+    - name: Display Bandit Security Report
+      run: cat output/security_report.txt
 
       
