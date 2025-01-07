@@ -33,9 +33,9 @@ jobs:
 
     # Looks like we might have to run a pip install here as the bandit action in market place looks horrible hence the 6 stars.
     
-   - name: Install Bandit
-     run: pip install bandit
+    - name: Install Bandit
+      run: pip install bandit
 
-   - name: Run Bandit Security Check
-     run: bandit -r . -f txt -o output/security_report.txt || true
+    - name: Run Bandit Security Check
+      run: bandit -r . -f txt -o output/security_report.txt || true
       
